@@ -20,7 +20,6 @@ qiime metadata tabulate \
   --m-input-file denoise_plate1.qza \
   --o-visualization denoise_plate1.qzv
 
-
 qiime feature-table summarize \
   --i-table table_plate1.qza \
   --m-sample-metadata-file 2024_wrangled_data_2_CLEAN.tsv \
