@@ -1,12 +1,17 @@
 # decontam prevalence method
 # katherine carbeck
 # 20 oct 2025
+
+## TO RUN ON BIOHPC:
+# type :"R" in the terminal to start R
+# then can copy and paste the code below to run the script
+
 # https://github.com/jbisanz/qiime2R/
 
 #only install once
-#if (!requireNamespace("devtools", quietly = TRUE)){install.packages("devtools")}
-#devtools::install_github("jbisanz/qiime2R") # this takes a long time to compile
-#BiocManager::install("decontam")
+if (!requireNamespace("devtools", quietly = TRUE)){install.packages("devtools")}
+devtools::install_github("jbisanz/qiime2R") # this takes a long time to compile
+BiocManager::install("decontam")
 library(qiime2R)     # read_qza, qza_to_phyloseq, read_q2metadata
 library(phyloseq)
 library(decontam)
