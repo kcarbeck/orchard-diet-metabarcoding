@@ -1,9 +1,7 @@
+# katherine carbeck
 # primer trimming (single pass, anchored at 5' end of each read)
 # using gene-specific ANML primers (without TruSeq tails)
 
-export LC_ALL=en_US.utf-8
-export LANG=en_US.utf-8
-source /programs/miniconda3/bin/activate qiime2-amplicon-2024.10
 
 qiime cutadapt trim-paired \
   --i-demultiplexed-sequences demux_plate1.qza \
@@ -19,6 +17,11 @@ qiime cutadapt trim-paired \
 
 
 # inspect .qzv after trimming to see where quality tapers off
+# the goal is to determine how much we should truncate the reads before the paired end reads are joined. This will depend on the length of our amplicon, and the quality of the reads.
 qiime demux summarize \
   --i-data trim_plate1.qza \
   --o-visualization trim_plate1.qzv
+
+# How much of the total sequence do we need to preserve and still have a sufficient overlap to merge the paired end reads?
+# How much of the poor quality sequence can we truncate before trying to merge?
+

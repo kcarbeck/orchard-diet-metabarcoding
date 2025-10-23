@@ -17,7 +17,7 @@ qiime taxa barplot \
   --m-metadata-file all_plates_metadata.tsv \
   --o-visualization qc/taxa_barplot_with_controls.qzv
 
-# export and make the library-size-by-role violin/jitter in R like in the decontam script
+# export and make merged summary table
 qiime feature-table summarize \
   --i-table table_merged_nocontam.qza \
   --m-sample-metadata-file all_plates_metadata.tsv \
@@ -56,12 +56,15 @@ qiime taxa barplot \
 
 
 ########################################################
-#* IMPORTANT NOTES REGARDING RAREFICATION:
+#* IMPORTANT NOTES REGARDING RAREFICATION 
+# https://doi.org/10.1371/journal.pcbi.1003531
+# 
 
-# USE RAREFIED TABLE FOR:
+# USE RAREFIED TABLE FOR: 
 # - core metrics (observed features, Shannon, Jaccard, Bray–Curtis/UniFrac)
 # - alpha diversity group tests that you want computed on an even-depth table (e.g., alpha-group-significance on rarefied table's metrics outputs)
 # - any downstream analyses that require an even-depth table or eqaul library sizes
+#NOTE: rarefying is generally accepted as not needed anymore for most analyses (see above), but there may be some cases where it is still needed.
 
 # DO NOT USE RAREFIED TABLE FOR:
 # - DEICODE/RPCA (uses unrarefied counts and iscompositional + sparse-friendly).
@@ -72,10 +75,10 @@ qiime taxa barplot \
 
 ########################################################
 
-##########################################
-# 4) (optional) alpha-rarefaction viz    #
-#     for depth selection only (no table)#
-##########################################
+########################################################
+#* 4)       (optional) alpha-rarefaction viz    
+#* for depth selection only and visualization (no table)
+########################################################
 qiime diversity alpha-rarefaction \
   --i-table table_analysis_only_arthropoda.qza \
   --m-metadata-file all_plates_metadata.tsv \
