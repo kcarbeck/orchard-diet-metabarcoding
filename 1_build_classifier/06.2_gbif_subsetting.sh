@@ -3,7 +3,9 @@
 # 2 oct 2025
 
 # this uses the gbif_filter_states.R script in the helper_scripts directory to filter for only records that occur within the range of your study area. It retains database sequences only if the taxon occurs in GBIF within the selected US state(s) and year range (has coordinates). For each record, matching is attempted at the most specific available rank, in order: species → genus → family → order → class → phylum. A record falls back to a broader rank only when more-specific ranks are missing (blank/NA). If a more-specific rank is present but not found in GBIF, the record is excluded and does not fall back. Species-level matches require a binomial name. “Presence in GBIF” reflects any occurrence record in GBIF under the filters; it does not imply nativeness or abundance. Using GBIF bulk download ensures full coverage of matching occurrences; API mode may paginate and is not recommended when completeness is critical.
-
+GBIF_PWD_FILE="/lustre2/home/lc736_0001/diet/songbird_coi_database/.secrets/gbif_pwd.txt"
+[ -f "$GBIF_PWD_FILE" ] || { echo "Missing $GBIF_PWD_FILE" >&2; exit 1; }
+export GBIF_PWD="$(tr -d '\r\n' < "$GBIF_PWD_FILE")"
 
 ##############################################################################
 #*                   TEST SUBSET OF DATABASE
@@ -29,7 +31,7 @@ time Rscript gbif_filter_states_new.R \
   --threads 12 \
   --download always \
   --gbif-user "jenwalsh123" \
-  --gbif-pwd "rucwor-hijSov-3xizmo" \
+  --gbif-pwd "$GBIF_PWD" \
   --gbif-email "jlw395@cornell.edu"
 
 
@@ -46,7 +48,7 @@ nohup time Rscript gbif_filter_states.R \
   --threads 12 \
   --cache-dir .gbif_cache \
   --gbif-user "jenwalsh123" \
-  --gbif-pwd "rucwor-hijSov-3xizmo" \
+  --gbif-pwd "$GBIF_PWD" \
   --gbif-email "jlw395@cornell.edu" \
   --download always \
   > gbif_filter.log 2>&1 &
