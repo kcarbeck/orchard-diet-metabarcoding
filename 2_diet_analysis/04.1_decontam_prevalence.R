@@ -1,18 +1,27 @@
 # decontam prevalence method
 # katherine carbeck
 # 20 oct 2025
+# run on R version 4.0.5 (default on BioHPC)
 
 ## TO RUN ON BIOHPC:
 # type :"R" in the terminal to start R
 # then can copy and paste the code below to run the script
 
+#only install once before running the script
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+    install.packages("BiocManager")
+}
+BiocManager::install("phyloseq", update = FALSE, ask = FALSE)
+BiocManager::install("decontam", update = FALSE, ask = FALSE)
+
+if (!requireNamespace("devtools", quietly = TRUE)) {
+    install.packages("devtools")
+}
+devtools::install_github("jbisanz/qiime2R") # this takes a long time to compile
 # https://github.com/jbisanz/qiime2R/
 
-#only install once
-if (!requireNamespace("devtools", quietly = TRUE)){install.packages("devtools")}
-devtools::install_github("jbisanz/qiime2R") # this takes a long time to compile
-BiocManager::install("decontam")
-library(qiime2R)     # read_qza, qza_to_phyloseq, read_q2metadata
+# check to make sure everything is loaded
+library(qiime2R)
 library(phyloseq)
 library(decontam)
 library(ggplot2)
@@ -388,7 +397,7 @@ p_lib_col <- ggplot(lib_df, aes(x = control_role, y = LibrarySize, fill = contro
   labs(x = "control role", y = "reads (pre-filter)",
        title = "library sizes by control role") +
   theme_minimal()
-ggsave(file.path(output_dir, "library_sizes_by_control_role.png"),
+ggsave(file.path(output_dir, "library_sizes_by_control_role2.png"),
        p_lib_col, width = 5, height = 3.5, dpi = 300)
 
 # 1a)another way to visualize the library sizes by control role
