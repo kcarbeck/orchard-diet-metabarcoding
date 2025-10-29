@@ -4,7 +4,7 @@ Build and apply a QIIME 2–compatible COI classifier for songbird diet metabarc
 
 The diet analysis workflow relies on QIIME 2 (2024.10) and R for `decontam` and posthoc analyses. Scripts live in `2_diet_analysis/` and are intended to be run in order, checking `.qzv` visualizations along the way.
 
-Please site this repo if you use it! :) 
+*Please site this repo if you use it! :)*
 
 ## Repository structure
 
@@ -46,12 +46,12 @@ orchard-diet-metabarcoding/
 Required software:
 
 - QIIME 2: `qiime2-amplicon-2024.10` (activates via `source /programs/miniconda3/bin/activate qiime2-amplicon-2024.10` on Cornell BioHPC)
-- CRABS: `>=1.8,<2.0` (banner shows v1.9.0 during help)
-- cutadapt: `4.4` (required by CRABS in-silico PCR path)
-- xopen: `<2.0` (workaround for known build issue)
-- VSEARCH: `2.16.0` (used by CRABS pairwise alignment)
-- BLAST+ makeblastdb: `2.10.1+` (listed as external dependency)
-- GNU parallel, awk; optional R (base) for comparisons
+- CRABS: `>=1.8,<2.0` 
+- cutadapt: `4.4`
+- xopen: `<2.0` 
+- VSEARCH: `2.16.0` 
+- BLAST+ makeblastdb: `2.10.1+` 
+- GNU parallel, awk; R (base) 
 
 Create and populate CRABS environment (Conda/Mamba):
 
@@ -126,8 +126,6 @@ qiime --help | head
 - Use unrarefied counts for DEICODE/RPCA, ANCOM‑BC/ANCOM‑BC2, and FOO/RRA summaries. Use rarefaction only for visualization or where even depth is explicitly required.
 - The `Site` metadata column is used as orchard ID in posthoc analyses and figures.
 
-### Optional extras
-- `misc_scripts/07_diversity.sh` provides QIIME-native alpha/beta pipelines (including DEICODE) and exports grouped FOO/RRA tables for R plotting.
 
 ## Build classifier pipeline (Naive Bayes)
 
@@ -159,7 +157,6 @@ Scripts in `1_build_classifier/` train and evaluate a QIIME 2 Naive Bayes classi
 Notes:
 - Ensure the training sequences match the exact ANML amplicon region used for classification (primer-trimmed, consistent orientation).
 - Prefer species-level dereplication for cleaner NB training; retain lineage strings with consistent rank prefixes.
-
 
 
 
