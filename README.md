@@ -4,7 +4,7 @@ Build and apply a QIIME 2–compatible COI classifier for songbird diet metabarc
 
 The diet analysis workflow relies on QIIME 2 (2024.10) and R for `decontam` and posthoc analyses. Scripts live in `2_diet_analysis/` and are intended to be run in order, checking `.qzv` visualizations along the way.
 
-*Please site this repo if you use it! :)*
+**Please site this repo if you use it! :)**
 
 ## Repository structure
 
