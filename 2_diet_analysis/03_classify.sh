@@ -31,3 +31,7 @@ qiime taxa barplot \
   --i-taxonomy /workdir/kcarbeck/classifier_out/nb_classified_taxonomy_141025.qza \
   --m-metadata-file /workdir/kcarbeck/orchards/fecal_sampling_full_metadata_2_CLEAN.tsv \
   --o-visualization /workdir/kcarbeck/classifier_out/barplot_plate1_before_filtering_141025.qzv
+
+
+##############################################################################
+# NOTE: after classification, we should evlatuate the classifier and make confusion matrix

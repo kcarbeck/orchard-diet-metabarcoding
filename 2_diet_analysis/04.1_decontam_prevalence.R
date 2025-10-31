@@ -11,6 +11,7 @@
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
+
 BiocManager::install("phyloseq", update = FALSE, ask = FALSE)
 BiocManager::install("decontam", update = FALSE, ask = FALSE)
 
